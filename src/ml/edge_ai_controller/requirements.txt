@@ -1,0 +1,17 @@
+# ML/AI Controller Python Dependencies
+
+# TensorFlow (or TensorFlow Lite for runtime if applicable separately)
+# tensorflow
+
+# NumPy for numerical operations
+# numpy
+
+# Pandas for data manipulation (if used for dataset handling)
+# pandas
+
+# Scikit-learn for utility functions (e.g., preprocessing, metrics)
+# scikit-learn
+
+# Add other specific libraries required for your ML model or data processing here.
+# Example:
+# matplotlib # For plotting, if any evaluation script generates visuals 
