@@ -1,76 +1,157 @@
 # System Architecture
 
-This document outlines the detailed system architecture for the Biocybernetic Nanoneural Skin project.
+This document details the core components, their interactions, and technologies used in the Biocybernetic Nanoneural Skin platform.
 
-*This is a work in progress and will be updated as the project evolves.*
+---
 
-## 1. Overview
+## 1. Material Layers
 
-(A high-level diagram and description of the overall system.)
+### 1.1 Inner Hydrogel Layer
 
-## 2. Core Layers (Near-Term Deliverables)
+* **Function**: Provides a moist, therapeutic wound environment and houses micro-reservoirs for drug delivery.
+* **Technology & Materials**:
 
-(Detailed breakdown of Layer 1-4 as per the whitepaper: Inner Hydrogel, Silicone Adhesive, Elastomeric Shell, Flexible e-Skin Sensors)
+  * Peptide-based hydrogels (e.g., MDPs) with 3D-printed pore architecture.
+  * Embedded microcapsules loaded with antibiotics, growth factors, analgesics.
+* **Key Characteristics**:
 
-### 2.1. Inner Hydrogel Layer
-   - Technology: Commercial peptide-based hydrogels (e.g., MDPs)
-   - Features: Moist wound healing, micro-reservoirs for antibiotics/growth factors.
-   - References: [1], [2] from whitepaper.
+  * Water content: 80–90%
+  * Elastic modulus: 5–50 kPa
+  * Controlled release kinetics: tunable via crosslink density
+* **Whitepaper References**: Section 2.1, \[1], \[2]
 
-### 2.2. Silicone Adhesive Mesh
-   - Technology: Medical-grade silicone gel dressings (Mepitel® analogs)
-   - Features: Atraumatic fixation.
-   - References: [3] from whitepaper.
+### 1.2 Silicone Adhesive Mesh
 
-### 2.3. Elastomeric Shell
-   - Technology: Microperforated PDMS/PU, carbon nanotube pigmentation.
-   - Features: Matte finish, UV stability, 3D-printed or cast.
-   - References: [4], [5] from whitepaper.
+* **Function**: Atraumatic fixation to delicate skin without causing additional damage.
+* **Technology & Materials**:
 
-### 2.4. Flexible e-Skin Sensors
-   - Technology: Printed silver nanowire and MXene-based sensors.
-   - Features: Measures pressure, temperature, moisture. Integrated BLE module.
-   - References: [6], [7] from whitepaper.
+  * Medical-grade silicone gel mesh (Mepitel® analog).
+  * Microtextured surface for gentle adhesion.
+* **Key Characteristics**:
 
-## 3. Near-Term Integration (Control and Power)
+  * Peel force: <10 N/m
+  * Removability: painless, residue-free
+* **Whitepaper References**: Section 2.1, \[3]
 
-(Details on Edge AI Controller, Power Harvesting, Cloud Interface)
+### 1.3 Elastomeric Outer Shell
 
-### 3.1. Edge AI Controller
-   - Technology: Low-power microcontroller (e.g., ARM Cortex-M series).
-   - Function: Runs light ML models for anomaly detection.
+* **Function**: Provides mechanical protection, UV shielding, and aesthetic finish.
+* **Technology & Materials**:
 
-### 3.2. Power Harvesting
-   - Technology: Hybrid (piezoelectric films, thermoelectric generators).
-   - Output: ~50–200 μW/cm².
-   - Backup: Rechargeable Li-ion polymer.
+  * PDMS or thermoplastic polyurethane (TPU) mixed with carbon nanotube pigment for deep matte black.
+  * Microperforations for breathability (5–20 μm pores).
+* **Key Characteristics**:
 
-### 3.3. Cloud Interface
-   - Compliance: HIPAA-compliant.
-   - Security: End-to-end encrypted BLE-to-cloud pipeline.
-   - Integration: Hospital EHR.
+  * Thickness: 200–500 μm
+  * Tensile strength: >10 MPa
+  * UV stability: 98% retention after 100 hours
+* **Whitepaper References**: Section 2.1, \[4], \[5]
 
-## 4. Future Nanorobotic Layer (Long-Term Vision)
+### 1.4 Flexible e-Skin Sensor Layer
 
-(Details on DNA-Origami, Molecular Motors, Memristive Fabric - emphasizing R&D status)
+* **Function**: Real-time monitoring of pressure, temperature, and moisture under the suit.
+* **Technology & Materials**:
 
-### 4.1. DNA-Origami Logic Gates
-   - TRL: 2–3 (Lab).
+  * Printed silver nanowire networks and MXene-based electrodes.
+  * Integrated BLE radio module on flexible PCB.
+* **Key Characteristics**:
 
-### 4.2. Molecular Motors & Self-Assembly
-   - Technology: Photoresponsive azobenzene motors, morphogenetic peptide gradients.
+  * Pressure range: 0–100 kPa
+  * Temperature range: 30–40 °C, accuracy ±0.1 °C
+  * Data rate: 10 Hz (scalable)
+* **Whitepaper References**: Section 2.1, \[6], \[7]
 
-### 4.3. Memristive Neuromorphic Fabric
-   - TRL: 3 (Academic prototypes).
+---
 
-## 5. Data Flow and Processing
+## 2. Electronic Nodes
 
-(Diagrams and descriptions of how data flows from sensors to AI and cloud.)
+### 2.1 Sensor Nodes
 
-## 6. Software Components
+* **Types & Parameters**:
 
-(Description of firmware, AI models, cloud platform, user dashboards.)
+  * Pressure: Capacitive/optical sensors in 1 cm² grid.
+  * Temperature: Thin-film RTD or thermistor.
+  * Moisture: Capacitive humidity sensors.
+* **Sampling & Transmission**:
 
-## 7. Hardware Components
+  * Sampling frequency: 5–20 Hz.
+  * Local aggregation: Microcontroller (ARM Cortex-M0+/M4).
 
-(Specifications for sensors, MCUs, power modules, materials.) 
+### 2.2 Edge AI Controller
+
+* **Hardware**: Low-power SoC (e.g., STM32, nRF52840) with 64 KB RAM, 512 KB flash.
+* **Software**:
+
+  * Pre-trained anomaly detection model (TinyML, TensorFlow Lite for Microcontrollers).
+  * Control firmware for drug-release triggers and actuator commands.
+* **Interfaces**:
+
+  * I²C/SPI to sensor arrays.
+  * BLE 5.0 for cloud uplink.
+
+### 2.3 Power Management
+
+* **Harvesters**:
+
+  * Piezoelectric layer (PZT or PVDF) capturing mechanical energy.
+  * Thermoelectric generators using body-ambient ΔT.
+* **Storage**:
+
+  * Micro LiPo battery (50–100 mAh).
+  * Supercapacitor for peak loads.
+* **Power Budget**:
+
+  * Nominal consumption: 100–200 μW.
+  * Peak burst: <50 mW during actuation.
+
+---
+
+## 3. API & Cloud Integration
+
+### 3.1 Communication Protocols
+
+* **BLE**: Primary wireless channel for data and control.
+* **Fallback**: NFC for local pairing and emergency config.
+
+### 3.2 Data Schema
+
+* **Payload** JSON or CBOR:
+
+```json
+{ "timestamp": 1680000000,
+  "sensors": {"pressure":45.2,"temp":36.8,"moisture":72.1},
+  "status": "ok"
+}
+```
+
+### 3.3 Cloud Architecture
+
+* **Edge Gateway**: Smartphone or dedicated hub app.
+* **Cloud Backend**:
+
+  * API server (REST+WebSocket) with OAuth2.
+  * Data store: Time-series DB (InfluxDB/Timescale).
+  * Dashboard: Real-time graphs, alerts, and ML-driven recommendations.
+* **Security**:
+
+  * TLS 1.3, AES-256 encryption.
+  * HIPAA-compliant data handling.
+
+---
+
+## 4. TRL Levels & Dependencies
+
+| Component                | TRL (2025) | Target TRL | Dependencies                         |
+| ------------------------ | ---------- | ---------- | ------------------------------------ |
+| Inner Hydrogel Layer     | 6          | 8          | Biocompatibility assays, scale-up    |
+| Silicone Adhesive Mesh   | 8          | 9          | Supply chain, packaging integration  |
+| Elastomeric Shell        | 6          | 8          | Pigment uniformity, mold tooling     |
+| e-Skin Sensors           | 5          | 7          | Flexible PCB vendor, BLE module      |
+| Edge AI Controller       | 4          | 7          | TinyML model optimization            |
+| Power Harvesters         | 3          | 6          | Integrated material testing          |
+| Cloud Backend & API      | 3          | 6          | DevOps pipeline, security audits     |
+| Nanorobotic Layer (R\&D) | 2          | 4 → 9      | Molecular programming, assembly tech |
+
+---
+
+*This architecture document complements the Whitepaper (Revised) and will evolve alongside the project. All sections should be reviewed and updated every quarter.*
