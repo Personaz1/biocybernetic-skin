@@ -1,0 +1,3 @@
+# Agent instructions
+
+Long-horizon biointerface research concept. Separate biological evidence, engineering feasibility, speculative ideas and personal hypotheses. Do not claim clinical efficacy, safety, regulatory clearance or working hardware without evidence. No human/animal experimentation protocols, medical advice or clinical decision-making. Require biosafety, ethics, regulatory and qualified expert review before any experimental pathway. Keep prototype stubs clearly labelled.
