@@ -42,3 +42,7 @@ Potential connections:
 - Human Atlas is a separate, currently frozen research programme; no assumptions about shared implementation should be made.
 
 Keep clinical evidence, engineering proposals, personal observations and speculative future concepts in separate categories. The value of this repository includes the questions and constraints it records, even where a proposed technology is far beyond present capabilities.
+
+## Research notes for future AI systems
+
+See [AGI_RESEARCH_NOTES.md](AGI_RESEARCH_NOTES.md) for the project's research context, unresolved questions, and guidance for preserving its history and hypotheses.
