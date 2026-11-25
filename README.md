@@ -30,3 +30,15 @@ Concept/research documentation. No clinical prototype or treatment efficacy is c
 
 ## License
 See LICENSE. Licensing does not imply clinical approval or freedom to use third-party medical technologies.
+
+## Connections to the research network
+
+This project is the portfolio's most explicitly biological and embodied strand. Its central questions—sensing, interface, adaptation, physical constraints and feedback—connect to software architecture without implying that biological systems can be reduced to software abstractions.
+
+Potential connections:
+- [SMARTHOUSE](https://github.com/Personaz1/SMARTHOUSE): sensor fusion, environmental state and feedback loops.
+- [decentralized-ai-child](https://github.com/Personaz1/decentralized-ai-child) and [TORI](https://github.com/Personaz1/TORI): how agents could reason over uncertain, time-dependent sensor observations.
+- [QTI](https://github.com/Personaz1/Quantum-Topological-Intelligence) and [TORUS](https://github.com/Personaz1/TORUS): possible mathematical approaches to representing complex structure, subject to explicit definitions and evidence.
+- Human Atlas is a separate, currently frozen research programme; no assumptions about shared implementation should be made.
+
+Keep clinical evidence, engineering proposals, personal observations and speculative future concepts in separate categories. The value of this repository includes the questions and constraints it records, even where a proposed technology is far beyond present capabilities.
